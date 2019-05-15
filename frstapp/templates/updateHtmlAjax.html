@@ -1,0 +1,40 @@
+
+<!-- {% block extrajs %}  
+
+   <script>     
+
+      $(".submit").click(function() { 
+
+        var id_student=$("#firstname").attr("data-id");
+
+        var name=$("#firstname").val();
+        var lastname=$("#lastname").val();;
+        var age=$("#age").val();
+        var email=$("#email").val();
+        console.log("id_student=",id_student,name,lastname,age,email)         
+        $.ajax({           
+            url: "/update/"+id_student+"/",
+            type: "POST",
+            // data: new FormData($('#updateForm')[0]),
+            data: { "id_student":id_student,"flag":"false",'name':name,'lastname':lastname,'age':age,'email':email},
+            dataType: 'json', 
+            // processData: false,                          // Using FormData, no need to process data.
+            // contentType:false           
+            success: function (data) {
+                console.log("data=",data);
+                if(data=='success')
+                {
+                    window.location.href="/studentdata/"
+                }               
+            }
+            
+        });
+            
+        });
+      // click close
+</script>
+
+{% endblock extrajs %}
+          -->
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html >
+<html lang="en" style="margin-top: 50px;margin-bottom: 10%">
+<head>
+  <title>crud</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+</head>
+<body>
+
+<form class="updateForm" id="updateForm" name="updateForm" method="post" novalidate>
+    {% for value in data %}
+        <label >Name:</label>
+        <input type="text" id="firstname" name="firstname" data-id={{ value.id }} value={{ value.name }}>
+             <!-- {{ value.name }} -->
+        <label >Last Name:</label>
+         <input id="lastname" type="text" name="lastname" value={{ value.last_name }}>
+            
+        <label >Email:</label>  
+        <input type="email" name="email" id="email"  value= {{ value.email }}> 
+            
+        <label >Age:</label>
+         <input type="number" name="age"  id="age" value= {{ value.age }}> 
+            
+             
+    {% endfor %}
+
+  <button type="submit" class="submit">Submit</button>
+
+</body>
+</html> 
+
+
+</form>
+
+{% block extrajs %}  
+
+   <script>     
+
+      $(".submit").click(function() { 
+        var id_student=$("#firstname").attr("data-id");
+        var formData = new FormData($('#updateForm')[0]);
+        var flag="false" ;
+        formData.append('id_student',id_student);  
+        formData.append('flag',flag);                
+
+        $.ajax({           
+            url: "/update/"+id_student+"/",
+            type: "POST",            
+            data: formData,
+            dataType: 'json', 
+            processData: false,                          // Using FormData, no need to process data.
+            contentType:false,          
+            success: function (data) {
+                console.log("data=",data);
+                if(data=='success')
+                {
+                    window.location.href="/studentdata/"
+                }               
+            }
+            
+        });
+            
+        });
+      // click close
+</script>
+
+{% endblock extrajs %}
+         
+
+
+
+

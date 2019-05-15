@@ -1,0 +1,16 @@
+
+<form method="post" novalidate><label>Email: </label>
+  {{ form.email }}<br><br>
+  <label> Password </label>
+ {{ form.password }}<br><br>
+  <button type="submit">Submit</button>
+
+  <br><label>not registered yet?</label><a href="/register/">register</a>
+<br>
+  <p><strong>-- OR --</strong></p>
+  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
+  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+
+
+</form>
